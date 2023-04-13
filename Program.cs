@@ -18,33 +18,27 @@
 //_________________________________________Задание  2.2 _________________________________
 //Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
 
-// int BackThree (int inputN)
-//     {
-//         if (inputN/100!=0)  // проверяем разрядность введенного числа
-//             {   int output = inputN % 10;    // выделяем нужный разряд
-//                 return output;
-//             }
-//         else return -1;     // возвращяем -1 при отсутствии нужной разрядности
-//     }
-// Console.Write ("Введите обрабатываемое  число - " );
-// int num=Convert.ToInt32(Console.ReadLine());
-// num = BackThree (num);
-// if (num!=-1) Console.WriteLine ($"Результат обработки - {num}");
-// else Console.WriteLine($"Число не удовлетворяет параметрам обработки");
+int BackThree (int inputN)
+    {
+       int del=100;
+       if (inputN/del!=0)  // проверяем минимальную разрядность введенного числа
+            {   
+                int razr = 2;
+                while (inputN/Convert.ToInt32(Math.Pow(10,(razr)))!=0)  // определяем разрядность числа
+                    {
+                        razr++;
+                    }
+                return Convert.ToInt32(inputN % Convert.ToInt32(Math.Pow(10,(razr-2)))/Convert.ToInt32(Math.Pow(10,(razr-3)))); 
+                // выделяем нужный разряд
+            }
+        else return -1;     // возвращяем -1 при отсутствии нужной разрядности
+    }
+Console.Write ("Введите обрабатываемое  число - " );
+int num=Convert.ToInt32(Console.ReadLine());
+num = BackThree (num);
+if (num!=-1) Console.WriteLine ($"Результат обработки - {num}");
+else Console.WriteLine($"Число не удовлетворяет параметрам обработки");
 
-
-//**************************************************************
-//  Решение второго задания через логическую функцию
-
-// bool CheckNum (int inputN)
-//      {
-//          if (inputN/100!=0) return true;
-//          else return false;
-//      }
-// Console.Write ("Введите обрабатываемое  число - " );
-// int num=Convert.ToInt32(Console.ReadLine());
-// if (CheckNum(num)) Console.WriteLine ($"Результат обработки - {num%10}");
-// else Console.WriteLine($"Число не удовлетворяет параметрам обработки");
 
 
 //_________________________________________Задание  2.3 _________________________________
